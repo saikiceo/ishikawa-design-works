@@ -1,0 +1,2746 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>石川デザインワークス | 札幌の工務店</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /*
+        * 石川デザインワークス - スタイルシート
+        * 札幌市の工務店ウェブサイト
+        */
+
+        /* ========== ベーススタイル ========== */
+        :root {
+            --primary-color: #F8B195;
+            --primary-dark: #E89D81;
+            --secondary-color: #F67280;
+            --secondary-dark: #E35F6C;
+            --accent-color: #C06C84;
+            --accent-dark: #A55A70;
+            --light-color: #FFF5F0;
+            --dark-color: #4A4A4A;
+            --gray-color: #767676;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.08);
+            --shadow-dark: rgba(0, 0, 0, 0.15);
+
+            --header-height: 80px;
+            --border-radius-sm: 8px;
+            --border-radius-md: 15px;
+            --border-radius-lg: 30px;
+
+            --transition-fast: all 0.2s ease;
+            --transition-normal: all 0.3s ease;
+            --transition-slow: all 0.5s ease;
+
+            --font-main: 'Noto Sans JP', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* スクロールバースタイル */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* テキストセレクション */
+        ::selection {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* 全体のリンクスタイル */
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-normal);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            position: relative;
+        }
+
+        .section {
+            position: relative;
+            padding: 100px 0;
+            overflow: hidden;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        .col {
+            padding: 0 15px;
+            flex: 1;
+        }
+
+        /* ボタンスタイル */
+        .btn {
+            display: inline-block;
+            font-weight: 600;
+            text-align: center;
+            padding: 15px 30px;
+            border-radius: var(--border-radius-lg);
+            cursor: pointer;
+            transition: var(--transition-normal);
+            box-shadow: 0 4px 15px var(--shadow-light);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: var(--transition-normal);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(192, 108, 132, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 13px 28px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(192, 108, 132, 0.2);
+        }
+
+        .btn i {
+            margin-left: 8px;
+            transition: var(--transition-normal);
+        }
+
+        .btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* ========== ヘッダー ========== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition-normal);
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px var(--shadow-light);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        header.scrolled {
+            padding: 5px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px var(--shadow-medium);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            height: var(--header-height);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 35px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--dark-color);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            font-size: 1rem;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition-normal);
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        nav ul li a:hover::before {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background-color: var(--dark-color);
+            margin: 3px 0;
+            border-radius: 5px;
+            transition: var(--transition-normal);
+        }
+
+        /* ========== ヒーローセクション ========== */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background-color: var(--light-color);
+            margin-top: var(--header-height); /* ヘッダーの高さを考慮 */
+            overflow: hidden;
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            /* animation-duration: 1s; JavaScriptで制御 */
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--dark-color);
+            line-height: 1.2;
+            position: relative;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .hero h1 span {
+            position: relative;
+            color: var(--accent-color);
+            font-weight: 900;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: rgba(192, 108, 132, 0.2);
+            z-index: -1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            color: var(--dark-color);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 55%;
+            background-size: cover;
+            background-position: center;
+            clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+            transition: var(--transition-slow);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 245, 240, 0.9) 30%, rgba(255, 245, 240, 0.7) 60%, rgba(255, 245, 240, 0.2) 100%);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 3;
+            animation: bounce 2s infinite;
+        }
+
+        .hero-scroll a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+        }
+
+        .hero-scroll i {
+            margin-top: 5px;
+            font-size: 1.2rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* ========== 会社概要セクション ========== */
+        .section-shape-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 150px; /* SVGの高さと合わせるか調整 */
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden; /* SVGがはみ出ないように */
+        }
+        .section-shape-top svg {
+            display: block; /* 余白を消す */
+            width: 100%;
+            height: auto; /* 高さを自動調整 */
+        }
+
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle {
+            display: inline-block;
+            background-color: rgba(248, 177, 149, 0.2);
+            color: var(--primary-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .title-line {
+            width: 80px;
+            height: 4px;
+            margin: 0 auto 20px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--gray-color);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 20px; /* 下マージンを修正 */
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .image-frame {
+            position: relative;
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: 0 20px 40px var(--shadow-medium);
+            transform: perspective(1000px) rotateY(5deg);
+            transition: var(--transition-normal);
+        }
+
+        .image-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom right, rgba(248, 177, 149, 0.2), rgba(192, 108, 132, 0.2));
+            pointer-events: none;
+        }
+
+        .image-frame:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(192, 108, 132, 0.3);
+            animation: pulse 2s infinite;
+            z-index: 3; /* 他の要素より手前に */
+        }
+
+        .experience-badge .years {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .experience-badge .text {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(192, 108, 132, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 40px rgba(192, 108, 132, 0.4);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(192, 108, 132, 0.3);
+            }
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .about-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .about-stats {
+            display: flex;
+            margin: 30px 0;
+            gap: 30px;
+        }
+
+        .stat-item {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--border-radius-md);
+            box-shadow: 0 10px 30px var(--shadow-light);
+            transition: var(--transition-normal);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-medium);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .counter {
+            display: inline-block;
+        }
+
+        .stat-text {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            font-weight: 500;
+        }
+
+        /* ========== 特徴セクション ========== */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* auto-fill だと空きスペースを残す */
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            transition: var(--transition-normal);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-medium);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background-color: rgba(248, 177, 149, 0.3); /* Primary color alpha */
+            border-radius: 50%;
+            z-index: -1;
+            /* animation: pulse 2s infinite; 重複しているので削除しても良いかも */
+        }
+
+        .feature-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .feature-content p {
+            color: var(--gray-color);
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        /* ========== 施工例セクション ========== */
+        .projects {
+            background-color: white;
+            position: relative;
+        }
+
+        .project-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: none;
+            background-color: transparent;
+            color: var(--gray-color);
+            cursor: pointer;
+            font-weight: 500;
+            border-radius: var(--border-radius-sm);
+            transition: var(--transition-normal);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* auto-fill だと空きスペースを残す */
+            gap: 25px;
+        }
+
+        .project-card {
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            position: relative;
+        }
+
+        .project-img-container {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 25px;
+            color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-normal);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .project-overlay p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .project-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .project-link i {
+            margin-left: 5px;
+            transition: var(--transition-normal);
+        }
+
+        .project-link:hover {
+            color: white;
+        }
+
+        .project-link:hover i {
+            transform: translateX(5px);
+        }
+
+        .project-more {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* ========== プロセスセクション ========== */
+        .process {
+            background-color: var(--light-color);
+            position: relative;
+        }
+
+        .process-diagram {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 70px; /* step-numberの高さ/2 + margin-bottom */
+            left: 60px;
+            right: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color), var(--primary-color));
+            z-index: 1;
+        }
+
+        .process-step {
+            width: 250px; /* 必要に応じて調整 */
+            margin: 0 30px 40px; /* margin-bottomを追加 */
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 30px; /* 下マージンを追加 */
+            position: relative;
+            box-shadow: 0 10px 20px rgba(192, 108, 132, 0.2);
+            transition: var(--transition-normal);
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background-color: rgba(192, 108, 132, 0.2); /* accent-color alpha */
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .process-step:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(192, 108, 132, 0.3);
+        }
+
+        .step-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius-md);
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            transition: var(--transition-normal);
+        }
+
+        .process-step:hover .step-content {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-medium);
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .step-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .step-content p {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            margin-bottom: 0;
+        }
+
+        .process-cta {
+            text-align: center;
+            margin-top: 40px;
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius-md);
+            box-shadow: 0 10px 30px var(--shadow-light);
+        }
+
+        .process-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ========== スタッフセクション ========== */
+        .team {
+            background-color: white;
+            position: relative;
+        }
+
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background-color: var(--light-color);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            transition: var(--transition-normal);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-medium);
+        }
+
+        .member-img-container {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-img-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, var(--light-color), transparent);
+        }
+
+        .member-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .team-member:hover .member-img {
+            transform: scale(1.05);
+        }
+
+        .member-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+
+        .member-role {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: rgba(192, 108, 132, 0.1); /* accent-color alpha */
+            border-radius: 20px;
+        }
+
+        .member-bio {
+            font-size: 0.95rem;
+            color: var(--gray-color);
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-link {
+            width: 35px;
+            height: 35px;
+            background-color: white;
+            color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-normal);
+            box-shadow: 0 5px 15px var(--shadow-light);
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(192, 108, 132, 0.2);
+        }
+
+        /* ========== お問い合わせセクション ========== */
+        .contact {
+            background-color: var(--light-color);
+            position: relative;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius-md);
+            box-shadow: 0 10px 30px var(--shadow-light);
+        }
+
+        .contact-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            min-width: 50px; /* widthが縮まないように */
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.3rem;
+            box-shadow: 0 8px 20px rgba(192, 108, 132, 0.2);
+        }
+
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+
+        .contact-text p, .contact-text a {
+            font-size: 1rem;
+            color: var(--gray-color);
+            margin-bottom: 0; /* 親のpマージンがあるので0に */
+        }
+        .contact-text p { /* マージン調整 */
+            margin-bottom: 0 !important;
+        }
+
+        .contact-text a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-map {
+            margin-top: 30px;
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow-light);
+        }
+
+        .contact-map img {
+            width: 100%;
+            display: block;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius-md);
+            box-shadow: 0 10px 30px var(--shadow-light);
+        }
+
+        .contact-form h3 {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .contact-form h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+        }
+
+        .required {
+            color: var(--secondary-color); /* 赤系の色 */
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e5e5e5;
+            border-radius: var(--border-radius-sm);
+            font-size: 1rem;
+            transition: var(--transition-normal);
+            color: var(--dark-color);
+            background-color: #f9f9f9;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(192, 108, 132, 0.1);
+            background-color: white;
+        }
+        /* バリデーションエラー用スタイル */
+        .form-control.error {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(246, 114, 128, 0.2); /* secondary-color alpha */
+        }
+
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .form-check-input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0; /* チェックボックスが縮まないように */
+        }
+
+        .form-check-label {
+            font-size: 0.95rem;
+            color: var(--gray-color);
+        }
+
+        .privacy-link {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .privacy-link:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: var(--border-radius-lg);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            display: inline-block; /* inlineだとwidth: 100%が効かない場合がある */
+            box-shadow: 0 10px 25px rgba(192, 108, 132, 0.3);
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(192, 108, 132, 0.4);
+        }
+
+        .submit-btn i {
+            margin-left: 8px;
+        }
+
+        /* ========== フッター ========== */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 80px 0 20px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-logo span {
+            color: var(--primary-color);
+        }
+
+        .footer-desc {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-normal);
+        }
+
+        .footer-social a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            color: white;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            transition: var(--transition-normal);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-links a::before {
+            content: '\f105'; /* Font Awesome Angle Right */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-right: 10px;
+            color: var(--primary-color);
+            transition: var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-links a:hover::before {
+            color: var(--accent-color);
+        }
+
+        .footer-newsletter p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+            font-size: 0.95rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .newsletter-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            font-size: 1rem;
+        }
+
+        .newsletter-btn:hover {
+            background-color: var(--secondary-color); /* Accent Dark でも良いかも */
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0; /* フッター最後のpなのでマージン不要 */
+        }
+
+        /* ========== レスポンシブデザイン ========== */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .process-steps::before {
+                left: 40px;
+                right: 40px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            :root {
+                --header-height: 70px;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .hero-content {
+                max-width: 500px;
+                padding-left: 15px; /* コンテナのpaddingを考慮 */
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-image {
+                width: 60%;
+                clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .about-image {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            .image-frame { /* 992px以下では傾きをなくす */
+                transform: none;
+            }
+            .experience-badge { /* 位置調整 */
+                 bottom: -20px;
+                 right: -20px;
+                 width: 100px;
+                 height: 100px;
+             }
+             .experience-badge .years {
+                 font-size: 2rem;
+             }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .features { /* 992px */
+                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            .project-grid { /* 992px */
+                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: var(--header-height);
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                background-color: white;
+                flex-direction: column;
+                transition: var(--transition-normal);
+                z-index: 999; /* ヘッダーよりは下、他より上 */
+                padding: 40px 0;
+                overflow-y: auto;
+                box-shadow: 0 10px 30px var(--shadow-medium);
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+                margin-left: 0; /* 横並び時のマージンをリセット */
+            }
+
+            .hero {
+                text-align: center;
+                min-height: 600px;
+                margin-top: var(--header-height); /* ヘッダー高さ再確認 */
+                height: auto; /* 100vh解除 */
+                padding: 100px 0; /* パディングで高さを確保 */
+            }
+
+            .hero-content {
+                max-width: 100%;
+                padding: 0 20px; /* 左右パディング */
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                position: absolute;
+                top: 0; left: 0; /* 位置リセット */
+                width: 100%;
+                height: 100%;
+                clip-path: none;
+                opacity: 0.2;
+                z-index: -1; /* 背景に */
+            }
+
+            .hero-overlay {
+                 background: radial-gradient(circle, rgba(255, 245, 240, 0.8) 0%, rgba(255, 245, 240, 0.95) 70%); /* グラデーション調整 */
+                 z-index: 0; /* コンテンツより手前、画像より奥 */
+            }
+            .hero-scroll {
+                display: none; /* 小画面ではスクロール表示不要かも */
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .process-step {
+                width: 100%;
+                max-width: 350px;
+                margin-bottom: 40px;
+                margin-left: 0; margin-right: 0; /* マージンリセット */
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0; /* 縦並びなのでgap不要 */
+            }
+            .form-row .form-group:last-child { /* 電話番号など */
+                margin-top: 25px; /* gapの代わりのマージン */
+            }
+
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-info { /* フッター左カラム */
+                order: 1; /* 最初に表示 */
+            }
+            .footer-links-container { /* フッター中央カラム */
+                order: 2;
+            }
+            .footer-newsletter { /* フッター右カラム */
+                order: 3;
+            }
+
+            .footer-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-links { /* フッター中央 */
+                padding-left: 0; /* 中央揃えなので padding 不要 */
+            }
+            .footer-links a {
+                justify-content: center; /* 中央揃え */
+            }
+            .footer-links a::before {
+                display: none;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            .section-title p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 10px; /* 縦並びのgap */
+            }
+
+            .newsletter-input,
+            .newsletter-btn {
+                width: 100%;
+                border-radius: var(--border-radius-sm);
+                margin-bottom: 0; /* gapで調整 */
+            }
+            .newsletter-btn { /* ボタンの角丸調整 */
+                 border-radius: var(--border-radius-sm);
+            }
+
+            .contact-info, .contact-form {
+                padding: 25px;
+            }
+            .contact-icon {
+                width: 40px; height: 40px; min-width: 40px;
+                font-size: 1.1rem;
+                margin-right: 15px;
+            }
+        }
+
+        /* ========== アニメーション ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ========== JavaScript用スタイル ========== */
+        /* .animate__fadeInUp は外部ライブラリ(Animate.css)用かもしれないが、一応残す */
+        .animate__animated { /* Animate.css を使う場合 */
+            visibility: hidden; /* 初期状態は非表示 */
+        }
+        .animate__animated.animate__fadeInUp {
+            visibility: visible; /* アニメーション開始時に表示 */
+            animation-name: fadeInUp;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* メニュー展開時のスタイル */
+        .menu-open {
+            overflow: hidden; /* 背景のスクロールを禁止 */
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg); /* translateY調整 */
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg); /* translateY調整 */
+        }
+
+        /* AOS (Animate On Scroll) 用のスタイル */
+        [data-aos] { /* AOSライブラリを使う場合、これらは不要なことが多い */
+            opacity: 0;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
+        [data-aos="fade-up"] {
+            transform: translateY(30px);
+        }
+        [data-aos].aos-animate { /* AOSライブラリが追加するクラス */
+            opacity: 1;
+            transform: translate(0, 0); /* transform リセット */
+        }
+
+
+        /* スクロールアニメーション用 (reveal) */
+        .reveal {
+            position: relative;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header id="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">
+                    <div class="logo-img">
+                        <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 0L93.3 75H6.7L50 0Z" fill="#F8B195"/>
+                            <path d="M50 100L6.7 25H93.3L50 100Z" fill="#C06C84"/>
+                            <circle cx="50" cy="50" r="20" fill="#F67280"/>
+                        </svg>
+                    </div>
+                    石川<span>デザインワークス</span>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#about">会社概要</a></li>
+                        <li><a href="#features">特徴</a></li>
+                        <li><a href="#projects">施工例</a></li>
+                        <li><a href="#process">ご利用の流れ</a></li>
+                        <li><a href="#team">スタッフ紹介</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+                <div class="menu-toggle" id="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="hero-particles" id="particles-js"></div>
+        <div class="container">
+            <div class="hero-content animate__animated animate__fadeInUp">
+                <h1 class="gradient-text">お客様の理想を<span>カタチ</span>にする<br>札幌の工務店</h1>
+                <p>石川デザインワークスは少人数だからこそできる、きめ細やかな対応と確かな技術力で、あなただけの空間を創り上げます。</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">お問い合わせ <i class="fas fa-arrow-right"></i></a>
+                    <a href="#projects" class="btn btn-outline">施工例を見る</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image" style="background-image: url('/api/placeholder/1200/800')"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-scroll">
+            <a href="#about">
+                <span>スクロール</span>
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 会社概要セクション -->
+    <section class="section" id="about">
+        <div class="section-shape-top">
+            <svg viewBox="0 0 1920 250" xmlns="http://www.w3.org/2000/svg">
+                <!-- fill を body の背景色に合わせる -->
+                <path d="M1920 250H0V0C0 0 937.5 457.5 1920 0V250Z" fill="var(--light-color)"/>
+            </svg>
+        </div>
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">About Us</span>
+                <h2>会社概要</h2>
+                <div class="title-line"></div>
+                <p>少人数ながら、一人ひとりが確かな技術と経験を持つプロフェッショナル集団です。</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-frame">
+                        <img src="/api/placeholder/600/800" alt="石川デザインワークス 外観">
+                    </div>
+                    <div class="experience-badge">
+                        <span class="years">10</span>
+                        <span class="text">年の<br>実績</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>お客様の声に耳を傾け、理想を形にする工務店</h3>
+                    <p>
+                        石川デザインワークスは、札幌市を拠点に活動する工務店です。社員3名という少数精鋭のチームで、新築住宅からリフォーム、商業施設まで幅広い建築ニーズにお応えしています。
+                    </p>
+                    <p>
+                        私たちが大切にしているのは、お客様との対話です。ご要望をしっかりとヒアリングし、理想の空間を実現するために最適な提案と施工を行います。
+                    </p>
+                    <p>
+                        小さな会社だからこそ、大手にはない柔軟性と細やかな対応が可能です。また、一つひとつの現場に社員が直接関わることで、高い品質と安心を提供します。
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number"><span class="counter">150</span>+</div>
+                            <div class="stat-text">施工実績</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number"><span class="counter">98</span>%</div>
+                            <div class="stat-text">顧客満足度</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number"><span class="counter">3</span></div>
+                            <div class="stat-text">スタッフ数</div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">お問い合わせ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴セクション -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">Our Services</span>
+                <h2>私たちの特徴</h2>
+                <div class="title-line"></div>
+                <p>石川デザインワークスが選ばれる理由</p>
+            </div>
+            <div class="features">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>高品質な施工</h3>
+                        <p>厳選された素材と熟練の技術で、長く愛される住まいを提供します。一つ一つの作業に妥協せず、細部にまでこだわった施工を行います。</p>
+                    </div>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>丁寧なヒアリング</h3>
+                        <p>お客様のライフスタイルや希望をしっかりとヒアリングし、理想の住まいづくりをサポートします。何度でも打ち合わせを重ね、ご納得いただける提案を行います。</p>
+                    </div>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>デザイン性の高さ</h3>
+                        <p>機能性だけでなく、美しさも兼ね備えた空間設計を心がけています。北海道の気候に適した、暮らしやすくおしゃれな住まいを実現します。</p>
+                    </div>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>安心のアフターサポート</h3>
+                        <p>施工後も長期にわたるアフターサポートで安心を提供します。定期的な点検や修繕のご相談など、お住まいのことならいつでもご連絡ください。</p>
+                    </div>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>環境に配慮した施工</h3>
+                        <p>環境負荷の少ない素材選びや省エネ設計など、地球にやさしい住まいづくりを推進しています。次世代に残せる持続可能な建築を目指します。</p>
+                    </div>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>明確な価格設定</h3>
+                        <p>無駄なコストを削減し、適正価格での施工を実現します。予算内でご満足いただける提案を行い、追加費用の発生を最小限に抑えます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 施工例セクション -->
+    <section class="section projects" id="projects">
+        <div class="section-shape-top">
+            <svg viewBox="0 0 1920 250" xmlns="http://www.w3.org/2000/svg">
+                 <!-- fill を前のセクションの背景色に合わせる -->
+                <path d="M0 250H1920V0C1920 0 982.5 457.5 0 0V250Z" fill="var(--light-color)"/>
+            </svg>
+        </div>
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">Our Works</span>
+                <h2>施工例</h2>
+                <div class="title-line"></div>
+                <p>これまでに手がけた様々な建築プロジェクトをご紹介します</p>
+            </div>
+            <div class="project-filter">
+                <button class="filter-btn active" data-filter="all">すべて</button>
+                <button class="filter-btn" data-filter="house">住宅</button>
+                <button class="filter-btn" data-filter="renovation">リノベーション</button>
+                <button class="filter-btn" data-filter="commercial">商業施設</button>
+            </div>
+            <div class="project-grid">
+                <div class="project-card" data-category="house">
+                    <div class="project-img-container">
+                        <img src="/api/placeholder/600/400" alt="モダンな一戸建て住宅" class="project-img">
+                    </div>
+                    <div class="project-overlay">
+                        <h3>札幌市・Nさま邸</h3>
+                        <p>自然光を取り入れた明るい住空間</p>
+                        <a href="#" class="project-link">詳細を見る <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card" data-category="commercial">
+                    <div class="project-img-container">
+                        <img src="/api/placeholder/600/400" alt="おしゃれな居酒屋" class="project-img">
+                    </div>
+                    <div class="project-overlay">
+                        <h3>居酒屋「和み」</h3>
+                        <p>温かみのある木材を活かした内装</p>
+                        <a href="#" class="project-link">詳細を見る <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card" data-category="house">
+                    <div class="project-img-container">
+                        <img src="/api/placeholder/600/400" alt="北欧風住宅" class="project-img">
+                    </div>
+                    <div class="project-overlay">
+                        <h3>小樽市・Kさま邸</h3>
+                        <p>北欧テイストを取り入れた洗練された空間</p>
+                        <a href="#" class="project-link">詳細を見る <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card" data-category="renovation">
+                    <div class="project-img-container">
+                        <img src="/api/placeholder/600/400" alt="リノベーションアパートメント" class="project-img">
+                    </div>
+                    <div class="project-overlay">
+                        <h3>円山アパートメント</h3>
+                        <p>古いアパートを現代的にリノベーション</p>
+                        <a href="#" class="project-link">詳細を見る <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card" data-category="commercial">
+                    <div class="project-img-container">
+                        <img src="/api/placeholder/600/400" alt="小さなオフィスビル" class="project-img">
+                    </div>
+                    <div class="project-overlay">
+                        <h3>石狩ビジネスパーク</h3>
+                        <p>小規模ビジネス向けオフィススペース</p>
+                        <a href="#" class="project-link">詳細を見る <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card" data-category="renovation">
+                    <div class="project-img-container">
+                        <img src="/api/placeholder/600/400" alt="キッチンリノベーション" class="project-img">
+                    </div>
+                    <div class="project-overlay">
+                        <h3>Tさま邸キッチン</h3>
+                        <p>使いやすさを追求したキッチンリノベーション</p>
+                        <a href="#" class="project-link">詳細を見る <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-more">
+                <a href="#" class="btn btn-outline">もっと見る</a>
+            </div>
+        </div>
+    </section>
+
+     <!-- プロセスセクション -->
+    <section class="section process" id="process">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">Our Process</span>
+                <h2>ご利用の流れ</h2>
+                <div class="title-line"></div>
+                <p>初回のご相談から施工完了まで、安心してお任せいただけるプロセスをご紹介します</p>
+            </div>
+            <div class="process-diagram">
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <div class="step-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3>初回ご相談</h3>
+                            <p>お客様のご希望や要望をお聞かせください。ライフスタイルや予算などもお伺いします。</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <div class="step-icon">
+                                <i class="fas fa-pencil-ruler"></i>
+                            </div>
+                            <h3>プラン・お見積り</h3>
+                            <p>ヒアリングをもとに最適なプランと詳細なお見積りを作成します。</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <div class="step-icon">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                            <h3>ご契約</h3>
+                            <p>プランにご納得いただけましたら、契約を締結し工事の準備を進めます。</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">04</div>
+                        <div class="step-content">
+                            <div class="step-icon">
+                                <i class="fas fa-hard-hat"></i>
+                            </div>
+                            <h3>工事着工</h3>
+                            <p>経験豊富な職人による丁寧な施工で、理想の空間を創り上げます。</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">05</div>
+                        <div class="step-content">
+                            <div class="step-icon">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <h3>完成・お引渡し</h3>
+                            <p>工事完了後、検査を行い問題がなければお引渡しとなります。</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">06</div>
+                        <div class="step-content">
+                            <div class="step-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3>アフターサポート</h3>
+                            <p>お引渡し後も定期点検や修繕など、長期にわたりサポートします。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="process-cta">
+                <p>まずはお気軽にご相談ください。ご要望に合わせた最適なプランをご提案いたします。</p>
+                <a href="#contact" class="btn btn-primary">無料相談する</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- スタッフセクション -->
+    <section class="section team" id="team">
+        <div class="section-shape-top">
+            <svg viewBox="0 0 1920 250" xmlns="http://www.w3.org/2000/svg">
+                 <!-- fill を前のセクションの背景色に合わせる -->
+                <path d="M1920 250H0V0C0 0 937.5 457.5 1920 0V250Z" fill="var(--light-color)"/>
+            </svg>
+        </div>
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">Our Team</span>
+                <h2>スタッフ紹介</h2>
+                <div class="title-line"></div>
+                <p>少数精鋭のプロフェッショナルが、お客様の理想の空間づくりをサポートします</p>
+            </div>
+            <div class="team-members">
+                <div class="team-member">
+                    <div class="member-img-container">
+                        <img src="/api/placeholder/400/400" alt="石川 太郎" class="member-img">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">石川 太郎</h3>
+                        <p class="member-role">代表取締役</p>
+                        <p class="member-bio">
+                            建築業界で20年以上の経験を持つ。お客様との対話を大切にし、一人ひとりのニーズに合わせた提案を心がけています。
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img-container">
+                        <img src="/api/placeholder/400/400" alt="佐藤 花子" class="member-img">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">佐藤 花子</h3>
+                        <p class="member-role">インテリアデザイナー</p>
+                        <p class="member-bio">
+                            空間デザインのスペシャリスト。機能性と美しさを兼ね備えた、住む人の個性が光る空間づくりを得意としています。
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img-container">
+                        <img src="/api/placeholder/400/400" alt="鈴木 一郎" class="member-img">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">鈴木 一郎</h3>
+                        <p class="member-role">現場監督</p>
+                        <p class="member-bio">
+                            15年の現場経験を持つ職人。細部へのこだわりと確かな技術で、高品質な施工を実現します。
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせセクション -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">Contact Us</span>
+                <h2>お問い合わせ</h2>
+                <div class="title-line"></div>
+                <p>ご質問やご相談は、お電話またはフォームよりお気軽にお問い合わせください</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>お問い合わせ先</h3>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>所在地</h4>
+                            <p>〒060-0000 北海道札幌市中央区○○町1-2-3</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>電話番号</h4>
+                            <p><a href="tel:0110001111">011-000-1111</a><br>（平日 9:00-18:00）</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>メールアドレス</h4>
+                            <p><a href="mailto:info@ishikawa-design.com">info@ishikawa-design.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>営業時間</h4>
+                            <p>平日 9:00-18:00<br>土曜 10:00-17:00（日祝休）</p>
+                        </div>
+                    </div>
+                    <div class="contact-map">
+                        <!-- Google Map埋め込み推奨 -->
+                        <img src="/api/placeholder/400/200" alt="地図">
+                        <!-- 例: <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>お問い合わせフォーム</h3>
+                    <form id="contactForm" novalidate> <!-- novalidateでブラウザ標準バリデーションを無効化（JSで制御するため） -->
+                        <div class="form-group">
+                            <label for="name">お名前 <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">メールアドレス <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">電話番号</label>
+                                <input type="tel" id="phone" name="phone" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">お問い合わせ内容 <span class="required">*</span></label>
+                            <select id="subject" name="subject" class="form-control" required>
+                                <option value="" selected disabled>選択してください</option>
+                                <option value="新築">新築について</option>
+                                <option value="リフォーム">リフォームについて</option>
+                                <option value="リノベーション">リノベーションについて</option>
+                                <option value="商業施設">商業施設について</option>
+                                <option value="その他">その他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">メッセージ <span class="required">*</span></label>
+                            <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" id="privacy" name="privacy" class="form-check-input" required>
+                            <label for="privacy" class="form-check-label">
+                                <a href="#" class="privacy-link" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>に同意します <span class="required">*</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="submit-btn">送信する <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <a href="#" class="footer-logo">石川<span>デザインワークス</span></a>
+                    <p class="footer-desc">
+                        私たちは札幌市を拠点に、新築住宅、リノベーション、商業施設など幅広い建築サービスを提供する工務店です。お客様一人ひとりの理想を形にするため、丁寧なヒアリングと確かな技術で対応いたします。
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-container">
+                    <h4 class="footer-title">クイックリンク</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">会社概要</a></li>
+                        <li><a href="#features">特徴</a></li>
+                        <li><a href="#projects">施工例</a></li>
+                        <li><a href="#process">ご利用の流れ</a></li>
+                        <li><a href="#team">スタッフ紹介</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-container">
+                    <h4 class="footer-title">サービス</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">新築住宅</a></li>
+                        <li><a href="#">リフォーム</a></li>
+                        <li><a href="#">リノベーション</a></li>
+                        <li><a href="#">商業施設</a></li>
+                        <li><a href="#">内装デザイン</a></li>
+                        <li><a href="#">設計プラン</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4 class="footer-title">メールマガジン</h4>
+                    <p>最新の施工事例やイベント情報をお届けします。</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="メールアドレス" required aria-label="メールアドレス">
+                        <button type="submit" class="newsletter-btn" aria-label="登録"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                    <p>※お客様の個人情報は厳重に管理し、メールマガジンの配信以外の目的では使用いたしません。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 石川デザインワークス All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 石川デザインワークス - スクリプト
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // ==== ヘッダースクロールエフェクト ====
+            const header = document.getElementById('header');
+            if (header) {
+                const scrollHandler = () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                };
+                window.addEventListener('scroll', scrollHandler);
+                scrollHandler(); // 初期状態設定
+            }
+
+            // ==== モバイルメニュートグル ====
+            const menuToggle = document.getElementById('menu-toggle');
+            const nav = document.querySelector('header nav'); // header内のnavを特定
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    menuToggle.classList.toggle('active');
+                    nav.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                });
+            }
+
+            // ==== ナビゲーションリンククリック時にモバイルメニューを閉じる ====
+            const navLinks = document.querySelectorAll('header nav a'); // header内のnav aを特定
+            if (menuToggle && nav) {
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        // スムーズスクロールを妨げないように、メニューがアクティブな場合のみ閉じる
+                        if (menuToggle.classList.contains('active')) {
+                            menuToggle.classList.remove('active');
+                            nav.classList.remove('active');
+                            document.body.classList.remove('menu-open');
+                        }
+                        // ページ内リンクでない場合は通常の遷移
+                    });
+                });
+            }
+
+            // ==== スクロールアニメーション (Reveal) ====
+            const revealElements = document.querySelectorAll('.reveal');
+            if (revealElements.length > 0) {
+                const revealOnScroll = () => {
+                    const windowHeight = window.innerHeight;
+                    revealElements.forEach(element => {
+                        const elementTop = element.getBoundingClientRect().top;
+                        if (elementTop < windowHeight - 100) { // 100px手前で表示開始
+                            element.classList.add('active');
+                        }
+                        // else { element.classList.remove('active'); } // スクロールアップで非表示にする場合
+                    });
+                };
+                window.addEventListener('scroll', revealOnScroll);
+                revealOnScroll(); // 初期表示チェック
+            }
+
+            // ==== AOS風アニメーション (data-aos属性を使用) ====
+            // ※ AOS.jsライブラリを別途読み込む場合は、この部分は不要になる可能性があります
+            const aosElements = document.querySelectorAll('[data-aos]');
+            if (aosElements.length > 0 && typeof IntersectionObserver !== 'undefined') {
+                const aosObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const element = entry.target;
+                            const delay = element.getAttribute('data-aos-delay');
+                            if (delay) {
+                                setTimeout(() => {
+                                    element.classList.add('aos-animate');
+                                }, parseInt(delay));
+                            } else {
+                                element.classList.add('aos-animate');
+                            }
+                            observer.unobserve(element); // 一度表示したら監視を解除
+                        }
+                    });
+                }, { threshold: 0.1 }); // 10%表示されたら発火
+
+                aosElements.forEach(element => {
+                    aosObserver.observe(element);
+                });
+            } else {
+                // IntersectionObserver未対応ブラウザ用のフォールバック (簡易的に全表示)
+                aosElements.forEach(el => el.classList.add('aos-animate'));
+            }
+
+
+            // ==== カウンターアニメーション ====
+            const counters = document.querySelectorAll('.counter');
+            const statsSection = document.querySelector('.about-stats');
+            let countingStarted = false;
+
+            if (counters.length > 0 && statsSection && typeof IntersectionObserver !== 'undefined') {
+                const startCounting = () => {
+                    if (countingStarted) return;
+                    countingStarted = true;
+
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.dataset.target || counter.textContent, 10); // data属性かテキスト内容
+                        counter.textContent = '0'; // 初期値
+                        let count = 0;
+                        const duration = 2000; // アニメーション時間 (ミリ秒)
+                        const frameDuration = 1000 / 60; // 60FPS想定
+                        const totalFrames = Math.round(duration / frameDuration);
+                        const increment = target / totalFrames;
+
+                        const updateCount = () => {
+                            count += increment;
+                            if (count >= target) {
+                                counter.textContent = target.toLocaleString(); // 区切り文字追加
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.floor(count).toLocaleString();
+                            }
+                        };
+                        const timer = setInterval(updateCount, frameDuration);
+                    });
+                };
+
+                const counterObserver = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting && !countingStarted) {
+                        startCounting();
+                        // counterObserver.disconnect(); // 必要なら監視解除
+                    }
+                }, { threshold: 0.5 }); // 50%表示されたら開始
+
+                counterObserver.observe(statsSection);
+            } else if (counters.length > 0) {
+                // IntersectionObserver未対応なら即時表示
+                 counters.forEach(counter => {
+                     const target = parseInt(counter.dataset.target || counter.textContent, 10);
+                     counter.textContent = target.toLocaleString();
+                 });
+            }
+
+
+            // ==== 施工例フィルター ====
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            const projectGrid = document.querySelector('.project-grid'); // Gridコンテナ
+
+            if (filterButtons.length > 0 && projectCards.length > 0 && projectGrid) {
+                const filterProjects = (filterValue) => {
+                    // アクティブボタン切り替え
+                    filterButtons.forEach(btn => {
+                        btn.classList.toggle('active', btn.dataset.filter === filterValue);
+                    });
+
+                    // カード表示切り替え（アニメーションのため少し複雑に）
+                    projectGrid.style.opacity = '0'; // 一旦非表示
+
+                    setTimeout(() => {
+                        projectCards.forEach(card => {
+                             const category = card.dataset.category;
+                             const shouldShow = (filterValue === 'all' || category === filterValue);
+                             card.style.display = shouldShow ? 'block' : 'none';
+                        });
+                         projectGrid.style.opacity = '1'; // 再表示
+                    }, 300); // 0.3秒後に実行
+                };
+
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        filterProjects(this.dataset.filter);
+                    });
+                });
+            }
+
+            // ==== お問い合わせフォームバリデーション ====
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); // デフォルト送信をキャンセル
+
+                    let isValid = true;
+                    const requiredFields = contactForm.querySelectorAll('[required]');
+
+                    // 全ての既存エラーをクリア
+                    contactForm.querySelectorAll('.form-control.error').forEach(el => el.classList.remove('error'));
+
+                    requiredFields.forEach(field => {
+                        let fieldValid = true;
+                        if (field.type === 'checkbox') {
+                            if (!field.checked) {
+                                fieldValid = false;
+                            }
+                        } else if (!field.value.trim()) {
+                            fieldValid = false;
+                        } else if (field.type === 'email') {
+                            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                            if (!emailPattern.test(field.value.trim())) {
+                                fieldValid = false;
+                            }
+                        }
+
+                        if (!fieldValid) {
+                            isValid = false;
+                            if (field.classList.contains('form-control')) {
+                                field.classList.add('error');
+                            } else if (field.type === 'checkbox') {
+                                // チェックボックスのエラー表示（例: ラベルの色を変える）
+                                const label = contactForm.querySelector(`label[for="${field.id}"]`);
+                                if (label) label.style.color = 'var(--secondary-color)'; // 例
+                            }
+                        } else {
+                             if (field.type === 'checkbox') {
+                                const label = contactForm.querySelector(`label[for="${field.id}"]`);
+                                if (label) label.style.color = ''; // スタイルリセット
+                            }
+                        }
+                    });
+
+                    if (isValid) {
+                        // ここで実際のフォーム送信処理（例: Fetch API や XMLHttpRequest）を行う
+                        // 例:
+                        // const formData = new FormData(contactForm);
+                        // fetch('your_server_endpoint', { method: 'POST', body: formData })
+                        //   .then(response => response.json())
+                        //   .then(data => {
+                        //     alert('お問い合わせありがとうございます。近日中にご連絡いたします。');
+                        //     contactForm.reset();
+                        //   })
+                        //   .catch(error => {
+                        //     console.error('送信エラー:', error);
+                        //     alert('送信中にエラーが発生しました。');
+                        //   });
+
+                        // 暫定のアラート表示
+                        alert('（仮）お問い合わせありがとうございます。近日中にご連絡いたします。');
+                        contactForm.reset();
+                        // エラースタイルリセット
+                         contactForm.querySelectorAll('.form-control.error').forEach(el => el.classList.remove('error'));
+                         contactForm.querySelectorAll('label[style*="color"]').forEach(el => el.style.color = '');
+
+                    } else {
+                        alert('入力内容に誤りがあります。赤枠の項目をご確認ください。');
+                        // エラーのある最初の項目にフォーカスを当てる（任意）
+                        const firstError = contactForm.querySelector('.error, input[type="checkbox"]:invalid');
+                        if(firstError) firstError.focus();
+                    }
+                });
+            }
+
+             // ==== パーティクルアニメーション ====
+             // 注意: この実装は簡易的なものであり、パフォーマンスに影響する可能性があります。
+             // 大規模なサイトでは particles.js や tsParticles などのライブラリの使用を推奨します。
+             const particlesContainer = document.getElementById('particles-js');
+             if (particlesContainer && window.requestAnimationFrame) { // requestAnimationFrame サポート確認
+                 const canvas = document.createElement('canvas');
+                 const ctx = canvas.getContext('2d');
+                 let particlesArray = [];
+                 const colors = ['#F8B195', '#F67280', '#C06C84']; // var() は使えない
+                 let animationFrameId;
+
+                 class Particle {
+                     constructor(x, y, size, color, canvasWidth, canvasHeight) {
+                         this.x = x;
+                         this.y = y;
+                         this.size = Math.random() * size + 1;
+                         this.color = color;
+                         this.speedX = Math.random() * 1 - 0.5; // 速度を少し落とす
+                         this.speedY = Math.random() * 1 - 0.5;
+                         this.canvasWidth = canvasWidth;
+                         this.canvasHeight = canvasHeight;
+                         this.opacity = 1;
+                     }
+
+                     update() {
+                         this.x += this.speedX;
+                         this.y += this.speedY;
+
+                         // 画面外に出たら反対側から出現（ループ）
+                         if (this.x < 0) this.x = this.canvasWidth;
+                         if (this.x > this.canvasWidth) this.x = 0;
+                         if (this.y < 0) this.y = this.canvasHeight;
+                         if (this.y > this.canvasHeight) this.y = 0;
+
+                         // ゆっくり消える効果 (サイズではなく透明度で)
+                         if (this.opacity > 0.02) {
+                             this.opacity -= 0.005; // 消える速度調整
+                         } else {
+                             this.opacity = 0; //完全に消す
+                         }
+
+                     }
+
+                     draw(ctx) {
+                          if (this.opacity <= 0) return; // 透明なら描画しない
+                         ctx.save(); // 現在の状態を保存
+                         ctx.globalAlpha = this.opacity;
+                         ctx.fillStyle = this.color;
+                         ctx.beginPath();
+                         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                         ctx.closePath();
+                         ctx.fill();
+                         ctx.restore(); // 透明度を元に戻す
+                     }
+                 }
+
+                 function initParticles() {
+                     particlesArray = []; // 配列をリセット
+                     canvas.width = particlesContainer.offsetWidth;
+                     canvas.height = particlesContainer.offsetHeight;
+                     const numberOfParticles = Math.floor(canvas.width * canvas.height / 15000); // パーティクル密度調整
+
+                     for (let i = 0; i < numberOfParticles; i++) {
+                         const x = Math.random() * canvas.width;
+                         const y = Math.random() * canvas.height;
+                         const size = Math.random() * 2 + 1; // サイズ調整
+                         const color = colors[Math.floor(Math.random() * colors.length)];
+                         particlesArray.push(new Particle(x, y, size, color, canvas.width, canvas.height));
+                     }
+                 }
+
+                 function animateParticles() {
+                     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                     for (let i = particlesArray.length - 1; i >= 0; i--) { // 後ろから処理（削除対応）
+                         particlesArray[i].update();
+                         particlesArray[i].draw(ctx);
+
+                         if (particlesArray[i].opacity <= 0) {
+                             particlesArray.splice(i, 1); // 透明になったら削除
+
+                             // 新しいパーティクルをランダムな位置に追加
+                              if (particlesArray.length < Math.floor(canvas.width * canvas.height / 15000)) { // 上限確認
+                                  const x = Math.random() * canvas.width;
+                                  const y = Math.random() * canvas.height;
+                                  const size = Math.random() * 2 + 1;
+                                  const color = colors[Math.floor(Math.random() * colors.length)];
+                                  particlesArray.push(new Particle(x, y, size, color, canvas.width, canvas.height));
+                              }
+                         }
+                     }
+                      // console.log(particlesArray.length); // デバッグ用
+
+                     animationFrameId = requestAnimationFrame(animateParticles);
+                 }
+
+                 // 初期化とアニメーション開始
+                 particlesContainer.appendChild(canvas);
+                 initParticles();
+                 animateParticles();
+
+                 // ウィンドウリサイズ対応（debounceで負荷軽減推奨）
+                 let resizeTimer;
+                 window.addEventListener('resize', () => {
+                     clearTimeout(resizeTimer);
+                     resizeTimer = setTimeout(() => {
+                         cancelAnimationFrame(animationFrameId); // 既存アニメーション停止
+                         initParticles(); // 再初期化
+                         animateParticles(); // アニメーション再開
+                     }, 250); // 250ms待ってからリサイズ処理
+                 });
+             }
+
+
+        }); // End DOMContentLoaded
+    </script>
+</body>
+</html>
